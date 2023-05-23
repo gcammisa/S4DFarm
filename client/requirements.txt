@@ -1,0 +1,4 @@
+random_user_agent>=1.0.1
+requests>=2.27.1
+lxml>=4.8.0
+pwntools>=4.8.0

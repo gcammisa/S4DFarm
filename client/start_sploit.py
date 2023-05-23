@@ -16,6 +16,7 @@ from concurrent.futures import ThreadPoolExecutor
 from enum import Enum
 from math import ceil
 from urllib.parse import urljoin
+from random_user_agent.user_agent import UserAgent
 
 import requests
 
@@ -23,6 +24,7 @@ if sys.version_info < (3, 4):
     logging.critical('Support of Python < 3.4 is not implemented yet')
     sys.exit(1)
 
+user_agent_rotator = UserAgent()
 os_windows = (os.name == 'nt')
 
 HEADER = '''
