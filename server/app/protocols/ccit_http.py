@@ -7,7 +7,7 @@ from models import FlagStatus, SubmitResult
 RESPONSES = {
     FlagStatus.QUEUED: [],
     FlagStatus.ACCEPTED: ['accepted'],
-    FlagStatus.REJECTED: ['own', 'too old', 'nop', 'invalid'],
+    FlagStatus.REJECTED: ['own', 'too old', 'nop', 'invalid', 'already'],
 }
 
 
@@ -15,7 +15,7 @@ TIMEOUT = 5
 
 
 def submit_flags(flags, config):
-    r = requests.put(config['SYSTEM_URL'],
+    r = requests.put("http://10.10.0.1:8080/flags",
                      headers={'X-Team-Token': config['TEAM_TOKEN']},
                      json=[item.flag for item in flags], timeout=TIMEOUT)
 
