@@ -30,7 +30,7 @@ CONFIG = {
 
     'TEAMS': {},
     'FLAG_FORMAT': FLAG_REGEX,
-
+    'FLAG_SUBMIT_URL': FLAG_SUBMIT_URL,
 
     'SYSTEM_PROTOCOL': 'ccit_http',
     'SYSTEM_HOST': SCOREBOARD_IP,
