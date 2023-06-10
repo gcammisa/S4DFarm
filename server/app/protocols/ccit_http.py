@@ -3,7 +3,6 @@ import requests
 from flask import current_app as app
 from models import FlagStatus, SubmitResult
 
-
 RESPONSES = {
     FlagStatus.QUEUED: [],
     FlagStatus.ACCEPTED: ['accepted'],
@@ -15,7 +14,7 @@ TIMEOUT = 5
 
 
 def submit_flags(flags, config):
-    r = requests.put("http://10.10.0.1:8080/flags",
+    r = requests.put(config['FLAG_SUBMIT_URL'],
                      headers={'X-Team-Token': config['TEAM_TOKEN']},
                      json=[item.flag for item in flags], timeout=TIMEOUT)
 
