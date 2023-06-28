@@ -54,4 +54,4 @@ CONFIG = {
 try:
     CONFIG['TEAMS'].update({team["logo"]: get_ip(id) for (id, team) in enumerate(json.loads(requests.get(f"http://{SCOREBOARD_IP}/api/game.json", timeout=3).text)["teams"]) if "nop" not in team and TEAM_NAME not in team["name"]})
 except Exception as e:
-    CONFIG['TEAMS'].update({f"team{id:02}": get_ip(id) for id in range(1, 40)})
+    CONFIG['TEAMS'].update({f"team{id:02}": get_ip(id) for id in range(1, 44) if id != 16})
