@@ -7,6 +7,8 @@ import requests
 TEAM_IP_PREFIX = '10.60.' #This is the first two "blocks" of the vulnboxes ip. Do not forget the dot at the end. Probably won't need to be changed
 TEAM_IP_SUFFIX = '.1' #This is the last "block" of the vulnboxes ip. Do not forget the dot at the beginning. Probably won't need to be changed
 SCOREBOARD_IP = '10.10.0.1' #This is the ip of the scoreboard. It probably won't need to be changed
+NUMBER_OF_TEAMS = 88 #This is the number of teams competing. Probably needs to be changed 
+TEAM_ID = 32 #This is your own team id, it prevents S4DFarm from attacking yourself. Needs to be changed
 
 #Flag config
 FLAG_SUBMIT_URL = "http://10.10.0.1:8080/flags" #this is the url to send the flags to with a post requests. It probably won't need to be changed.
@@ -52,6 +54,7 @@ CONFIG = {
 }
 
 try:
+    #This is using a deprecated api, hence it will always fallback to line 60
     CONFIG['TEAMS'].update({team["logo"]: get_ip(id) for (id, team) in enumerate(json.loads(requests.get(f"http://{SCOREBOARD_IP}/api/game.json", timeout=3).text)["teams"]) if "nop" not in team and TEAM_NAME not in team["name"]})
 except Exception as e:
-    CONFIG['TEAMS'].update({f"team{id:02}": get_ip(id) for id in range(1, 44) if id != 15})
+    CONFIG['TEAMS'].update({f"team{id:02}": get_ip(id) for id in range(1, NUMBER_OF_TEAMS+1) if id != TEAM_ID})
